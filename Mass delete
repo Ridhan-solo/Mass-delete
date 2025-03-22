@@ -1,0 +1,27 @@
+import os
+
+def delete_files_with_word(folder_path, word):
+    """
+    Deletes files containing a specific word in their names in the given folder.
+
+    :param folder_path: Path to the folder where files will be checked.
+    :param word: The specific word to search for in filenames.
+    """
+    try:
+        # List all files in the directory
+        for filename in os.listdir(folder_path):
+            # Build the full path
+            file_path = os.path.join(folder_path, filename)
+            # Check if it's a file and if the word is in the filename
+            if os.path.isfile(file_path) and word in filename:
+                print(f"Deleting file: {file_path}")
+                os.remove(file_path)
+        print("Deletion completed.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Example usage
+if __name__ == "__main__":
+    folder_path = input("Enter the folder path: ")
+    word = input("Enter the word to search for in filenames: ")
+    delete_files_with_word(folder_path, word)
